@@ -29,15 +29,21 @@ class TestIniconfig < Test::Unit::TestCase
     
     should "return escaped strings if a value is quoted" do
       assert_equal @config.ftp.name, "hello there, ftp uploading"
+      assert_equal @config.http.inline, "this is an ;inline comment inside a string"
     end
     
     should "return an array for comma-separated values" do
       assert @config.http.params.is_a? Array
     end
     
+    should "return a symbol for a value preceded by a colon" do
+      assert @config.http.authentication.is_a? Symbol
+    end
+    
     should "ignore comments at the end of a line" do
       assert_equal @config.common.paid_users_size_limit, 2147483648
-    end    
+    end
+    
   end
   
   context "an ini file loaded with overrides" do

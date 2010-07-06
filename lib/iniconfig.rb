@@ -19,9 +19,10 @@ class IniConfig
     @data = ConfigGroup.new {|h,k| h[k] = ConfigGroup.new}
     
     @rgxp_comment = %r/^\s*\z|\A\s*[#{@comment}]/
+    @rgxp_inline  = %r/(.*?)(?:\s*[#{@comment}]|$)/
     @rgxp_section = %r/^\s*\[(\D[^\]]+)\]/
     @rgxp_quote   = %r/^\s*#{@quote}([^#{@quote}]+)#{@quote}/
-    @rgxp_param   = %r/^([a-zA-Z]\w+)(?:#{@override[0,1]}([\w\d}]+)#{@override[1,1]})?\s*#{@param}(.*?)(?:[#{@comment}]|$)/
+    @rgxp_param   = %r/^([a-zA-Z]\w+)(?:#{@override[0,1]}([\w\d}]+)#{@override[1,1]})?\s*#{@param}(.*)/
 
     parse
   end
@@ -58,6 +59,8 @@ class IniConfig
   def process_value(value)
     value.strip!
     return $1 if value =~ @rgxp_quote
+    value = $1 if value =~ @rgxp_inline # strip out inline comments and return whatever is left
+    return value[1..-1].to_sym if value.is_a_symbol?
     return value.split(@array_sep).collect{|v|v.strip} if value.include?(@array_sep)
     return false if @boolean_false.include?(value)
     return true if @boolean_true.include?(value)
@@ -69,6 +72,10 @@ end
 class String
   def is_a_number?
     self.to_s.match(/\A[+-]?\d+?(\.\d+)?\Z/) == nil ? false : true
+  end
+  
+  def is_a_symbol?
+    self.to_s.match(/^\:/) == nil ? false : true
   end
 end  
 
