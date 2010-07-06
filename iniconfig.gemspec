@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{iniconfig}
-  s.version = "0.0.0"
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["conickal"]
-  s.date = %q{2010-06-25}
+  s.date = %q{2010-07-06}
   s.description = %q{A library to load configuration directives from INI-style files.}
   s.email = %q{conickal@gmail.com}
   s.extra_rdoc_files = [
@@ -20,16 +20,26 @@ Gem::Specification.new do |s|
     ".document",
      ".gitignore",
      "LICENSE",
+     "README.markdown",
      "Rakefile",
      "VERSION",
+     "iniconfig.gemspec",
      "lib/iniconfig.rb",
      "test/helper.rb",
+     "test/samples/fail_bad_line.ini",
+     "test/samples/fail_key_starts_with_number.ini",
+     "test/samples/fail_missing_angle_bracket.ini",
+     "test/samples/fail_missing_bracket.ini",
+     "test/samples/fail_no_key.ini",
+     "test/samples/fail_no_section.ini",
+     "test/samples/fail_section_starts_with_number.ini",
+     "test/samples/valid.ini",
      "test/test_iniconfig.rb"
   ]
   s.homepage = %q{http://github.com/conickal/iniconfig}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.6}
+  s.rubygems_version = %q{1.3.3}
   s.summary = %q{Load INI-style configuration files with ease.}
   s.test_files = [
     "test/helper.rb",
@@ -41,12 +51,12 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
-      s.add_development_dependency(%q<thoughtbot-shoulda>, [">= 0"])
+      s.add_development_dependency(%q<shoulda>, [">= 0"])
     else
-      s.add_dependency(%q<thoughtbot-shoulda>, [">= 0"])
+      s.add_dependency(%q<shoulda>, [">= 0"])
     end
   else
-    s.add_dependency(%q<thoughtbot-shoulda>, [">= 0"])
+    s.add_dependency(%q<shoulda>, [">= 0"])
   end
 end
 
