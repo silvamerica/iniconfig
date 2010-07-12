@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["conickal"]
-  s.date = %q{2010-07-06}
+  s.date = %q{2010-07-07}
   s.description = %q{A library to load configuration directives from INI-style files.}
   s.email = %q{conickal@gmail.com}
   s.extra_rdoc_files = [

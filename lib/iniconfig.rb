@@ -1,6 +1,20 @@
 class IniConfig
-  def self.load(file_path, overrides=[], opts={})
-    new(file_path, overrides, opts).data
+  def self.load(file_paths, overrides=[], opts={})
+    paths = file_paths.dup
+    paths = [paths] if paths.is_a? String
+    configuration = false
+    while !configuration && !paths.empty? do
+      path = paths.shift
+      begin
+        configuration = new(path, overrides, opts).data
+      rescue Errno::ENOENT => e
+      end
+    end
+    if configuration
+      configuration
+    else
+      raise Errno::ENOENT, [file_paths].join(" or ")
+    end
   end
     
   attr_accessor :data
@@ -11,7 +25,7 @@ class IniConfig
     @override = opts[:override] || '<>'
     @comment = opts[:comment] || ';#'
     @param = opts[:assigner] || '='
-    @quote = opts[:quote] || '"'
+    @quote = opts[:quote] || '\'"'
     @array_sep = opts[:array_separator] || ','
     @boolean_true = opts[:boolean_true] || ["yes", "true"]
     @boolean_false = opts[:boolean_false] || ["no", "false"]    
@@ -21,7 +35,7 @@ class IniConfig
     @rgxp_comment = %r/^\s*\z|\A\s*[#{@comment}]/
     @rgxp_inline  = %r/(.*?)(?:\s*[#{@comment}]|$)/
     @rgxp_section = %r/^\s*\[(\D[^\]]+)\]/
-    @rgxp_quote   = %r/^\s*#{@quote}([^#{@quote}]+)#{@quote}/
+    @rgxp_quote   = %r/^\s*[#{@quote}]([^#{@quote}]*?)[#{@quote}]/
     @rgxp_param   = %r/^([a-zA-Z]\w+)(?:#{@override[0,1]}([\w\d}]+)#{@override[1,1]})?\s*#{@param}(.*)/
 
     parse
