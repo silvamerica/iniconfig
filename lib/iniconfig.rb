@@ -34,9 +34,9 @@ class IniConfig
     
     @rgxp_comment = %r/^\s*\z|\A\s*[#{@comment}]/
     @rgxp_inline  = %r/(.*?)(?:\s*[#{@comment}]|$)/
-    @rgxp_section = %r/^\s*\[(\D[^\]]+)\]/
+    @rgxp_section = %r/^\s*\[([^\]]+)\]/
     @rgxp_quote   = %r/^\s*[#{@quote}]([^#{@quote}]*?)[#{@quote}]/
-    @rgxp_param   = %r/^([a-zA-Z][\w\.\_\-]+)(?:#{@override[0,1]}([\w\d\_\-}]+)#{@override[1,1]})?\s*#{@param}(.*)/
+    @rgxp_param   = %r/^([\w\.\_\-\:]+)(?:#{@override[0,1]}([\w\d\_\-\:}]+)#{@override[1,1]})?\s*#{@param}(.*)/
 
     parse
   end

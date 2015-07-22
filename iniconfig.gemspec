@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{iniconfig}
-  s.version = "0.1.1"
+  s.version = "0.1.5"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["silvamerica"]
@@ -27,12 +27,10 @@ Gem::Specification.new do |s|
      "lib/iniconfig.rb",
      "test/helper.rb",
      "test/samples/fail_bad_line.ini",
-     "test/samples/fail_key_starts_with_number.ini",
      "test/samples/fail_missing_angle_bracket.ini",
      "test/samples/fail_missing_bracket.ini",
      "test/samples/fail_no_key.ini",
      "test/samples/fail_no_section.ini",
-     "test/samples/fail_section_starts_with_number.ini",
      "test/samples/valid.ini",
      "test/test_iniconfig.rb"
   ]

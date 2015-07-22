@@ -3,8 +3,6 @@ require 'helper'
 class TestIniconfig < Test::Unit::TestCase
   context "an ini file" do
     should_fail_to_load_if "a line exists before a section is defined", "fail_no_section.ini"
-    should_fail_to_load_if "a section name starts with a number", "fail_section_starts_with_number.ini"
-    should_fail_to_load_if "a key starts with a number", "fail_key_starts_with_number.ini"
     should_fail_to_load_if "a line has no key", "fail_no_key.ini"
     should_fail_to_load_if "a line isn't a section, key, or comment", "fail_bad_line.ini"
     should_fail_to_load_if "a section name is missing a bracket", "fail_missing_bracket.ini"
@@ -43,17 +41,22 @@ class TestIniconfig < Test::Unit::TestCase
     should "ignore comments at the end of a line" do
       assert_equal @config.common.paid_users_size_limit, 2147483648
     end
+
+    should "return correct values when sections and keys start with numbers" do
+      assert_equal @config[:'3:common'][:'3:basic_size_limit'], 26214400
+    end
     
   end
   
   context "an ini file loaded with overrides" do
     setup do
-      @config = IniConfig.load('test/samples/valid.ini', ["ubuntu", :live])
+      @config = IniConfig.load('test/samples/valid.ini', ["ubuntu", "3:ubuntu", :live])
     end
     
     should "use override values" do
       assert_equal @config.ftp.path, "/etc/var/uploads"
       assert_equal @config.http.path, "/box/var/tmp/"
+      assert_equal @config[:'3:common'].student_size_limit, 52428800
     end
   end
   
