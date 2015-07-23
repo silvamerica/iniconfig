@@ -8,10 +8,10 @@ Gem::Specification.new do |s|
   s.version = "0.1.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["conickal"]
+  s.authors = ["silvamerica"]
   s.date = %q{2010-07-07}
   s.description = %q{A library to load configuration directives from INI-style files.}
-  s.email = %q{conickal@gmail.com}
+  s.email = %q{nick@silvamerica.com}
   s.extra_rdoc_files = [
     "LICENSE",
      "README.markdown"
@@ -36,7 +36,7 @@ Gem::Specification.new do |s|
      "test/samples/valid.ini",
      "test/test_iniconfig.rb"
   ]
-  s.homepage = %q{http://github.com/conickal/iniconfig}
+  s.homepage = %q{http://github.com/silvamerica/iniconfig}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.3}

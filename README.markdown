@@ -4,7 +4,7 @@ Load INI-style configuration files with ease.
 
 ## Installation
 
-    git clone http://github.com/conickal/iniconfig.git
+    git clone http://github.com/silvamerica/iniconfig.git
     cd iniconfig
     gem build iniconfig.gemspec
     gem install iniconfig-X.X.X.gem

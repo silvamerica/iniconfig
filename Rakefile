@@ -7,9 +7,9 @@ begin
     gem.name = "iniconfig"
     gem.summary = %Q{Load INI-style configuration files with ease.}
     gem.description = %Q{A library to load configuration directives from INI-style files.}
-    gem.email = "conickal@gmail.com"
-    gem.homepage = "http://github.com/conickal/iniconfig"
-    gem.authors = ["conickal"]
+    gem.email = "nick@silvamerica.com"
+    gem.homepage = "http://github.com/silvamerica/iniconfig"
+    gem.authors = ["silvamerica"]
     gem.add_development_dependency "shoulda", ">= 0"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
